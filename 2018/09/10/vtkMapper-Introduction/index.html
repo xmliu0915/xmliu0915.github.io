@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>vtkMapper Introduction | 六院七院</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="vtk-js,vtk" />
+    
+    <meta name="description" content="IntroductionvtkMapper is an abstract class to specify interface between data andgraphics primitives. Subclasses of vtkMapper map data through alookuptable and control the creation of rendering primiti">
+<meta name="keywords" content="vtk-js,vtk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vtkMapper Introduction">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/vtkMapper-Introduction/index.html">
+<meta property="og:site_name" content="六院七院">
+<meta property="og:description" content="IntroductionvtkMapper is an abstract class to specify interface between data andgraphics primitives. Subclasses of vtkMapper map data through alookuptable and control the creation of rendering primiti">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-10T15:46:19.926Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vtkMapper Introduction">
+<meta name="twitter:description" content="IntroductionvtkMapper is an abstract class to specify interface between data andgraphics primitives. Subclasses of vtkMapper map data through alookuptable and control the creation of rendering primiti">
+    
+
+    
+        <link rel="alternate" href="/" title="六院七院" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">七院八院</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">主页</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/VTK/">VTK</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">关于</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/VTK/">VTK</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-vtkMapper-Introduction" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        vtkMapper Introduction
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/09/10/vtkMapper-Introduction/" class="article-date">
+            <time datetime="2018-09-10T15:09:30.000Z" itemprop="datePublished">2018-09-10</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/vtk/">vtk</a>, <a class="tag-link" href="/tags/vtk-js/">vtk-js</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>vtkMapper is an abstract class to specify interface between data and<br>graphics primitives. Subclasses of vtkMapper map data through a<br>lookuptable and control the creation of rendering primitives that<br>interface to the graphics library. The mapping can be controlled by<br>supplying a lookup table and specifying a scalar range to map data<br>through.</p>
+<p>There are several important control mechanisms affecting the behavior of<br>this object. The ScalarVisibility flag controls whether scalar data (if<br>any) controls the color of the associated actor(s) that refer to the<br>mapper. The ScalarMode ivar is used to determine whether scalar point data<br>or cell data is used to color the object. By default, point data scalars<br>are used unless there are none, then cell scalars are used. Or you can<br>explicitly control whether to use point or cell scalar data. Finally, the<br>mapping of scalars through the lookup table varies depending on the<br>setting of the ColorMode flag. See the documentation for the appropriate<br>methods for an explanation.</p>
+<p>Another important feature of this class is whether to use immediate mode<br>rendering (ImmediateModeRenderingOn) or display list rendering<br>(ImmediateModeRenderingOff). If display lists are used, a data structure<br>is constructed (generally in the rendering library) which can then be<br>rapidly traversed and rendered by the rendering library. The disadvantage<br>of display lists is that they require additional memory which may affect<br>the performance of the system.</p>
+<p>Another important feature of the mapper is the ability to shift the<br>Z-buffer to resolve coincident topology. For example, if you’d like to<br>draw a mesh with some edges a different color, and the edges lie on the<br>mesh, this feature can be useful to get nice looking lines. (See the<br>ResolveCoincidentTopology-related methods.)</p>
+<h3 id="lookupTable"><a href="#lookupTable" class="headerlink" title="lookupTable"></a>lookupTable</h3><p>Set/Get a lookup table for the mapper to use.</p>
+<h3 id="createDefaultLookupTable"><a href="#createDefaultLookupTable" class="headerlink" title="createDefaultLookupTable()"></a>createDefaultLookupTable()</h3><p>Create default lookup table. Generally used to create one when none<br>is available with the scalar data.</p>
+<h3 id="scalarVisibility-get-set"><a href="#scalarVisibility-get-set" class="headerlink" title="scalarVisibility (get/set)"></a>scalarVisibility (get/set)</h3><p>Turn on/off flag to control whether scalar data is used to color objects.</p>
+<h3 id="static-get-set"><a href="#static-get-set" class="headerlink" title="static (get/set)"></a>static (get/set)</h3><p>Turn on/off flag to control whether the mapper’s data is static. Static data<br>means that the mapper does not propagate updates down the pipeline, greatly<br>decreasing the time it takes to update many mappers. This should only be<br>used if the data never changes.</p>
+<h3 id="colorMode"><a href="#colorMode" class="headerlink" title="colorMode"></a>colorMode</h3><p>Description: Control how the scalar data is mapped to colors. By<br>default (ColorModeToDefault), unsigned char scalars are treated<br>as colors, and NOT mapped through the lookup table, while<br>everything else is. ColorModeToDirectScalar extends<br>ColorModeToDefault such that all integer types are treated as<br>colors with values in the range 0-255 and floating types are<br>treated as colors with values in the range 0.0-1.0. Setting<br>ColorModeToMapScalars means that all scalar data will be mapped<br>through the lookup table. (Note that for multi-component<br>scalars, the particular component to use for mapping can be<br>specified using the SelectColorArray() method.)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// Helper methods</span></span><br><span class="line">instance.setColorModeToDefault();</span><br><span class="line">instance.setColorModeToMapScalars();</span><br><span class="line">instance.setColorModeToDirectScalars();</span><br></pre></td></tr></table></figure>
+<h3 id="getColorModeAsString"><a href="#getColorModeAsString" class="headerlink" title="getColorModeAsString()"></a>getColorModeAsString()</h3><p>Return the method of coloring scalar data.</p>
+<h3 id="interpolateScalarsBeforeMapping"><a href="#interpolateScalarsBeforeMapping" class="headerlink" title="interpolateScalarsBeforeMapping"></a>interpolateScalarsBeforeMapping</h3><p>By default, vertex color is used to map colors to a surface.<br>Colors are interpolated after being mapped.<br>This option avoids color interpolation by using a one dimensional<br>texture map for the colors.</p>
+<h3 id="useLookupTableScalarRange"><a href="#useLookupTableScalarRange" class="headerlink" title="useLookupTableScalarRange"></a>useLookupTableScalarRange</h3><p>Control whether the mapper sets the lookuptable range based on its<br>own ScalarRange, or whether it will use the LookupTable ScalarRange<br>regardless of it’s own setting. By default the Mapper is allowed to set<br>the LookupTable range, but users who are sharing LookupTables between<br>mappers/actors will probably wish to force the mapper to use the<br>LookupTable unchanged.</p>
+<h3 id="scalarRange"><a href="#scalarRange" class="headerlink" title="scalarRange"></a>scalarRange</h3><p>Specify range in terms of scalar minimum and maximum (smin,smax). These<br>values are used to map scalars into lookup table. Has no effect when<br>UseLookupTableScalarRange is true.</p>
+<h3 id="scalarMode"><a href="#scalarMode" class="headerlink" title="scalarMode"></a>scalarMode</h3><p>Control how the filter works with scalar point data and cell attribute<br>data. By default (ScalarModeToDefault), the filter will use point data,<br>and if no point data is available, then cell data is used. Alternatively<br>you can explicitly set the filter to use point data<br>(ScalarModeToUsePointData) or cell data (ScalarModeToUseCellData).<br>You can also choose to get the scalars from an array in point field<br>data (ScalarModeToUsePointFieldData) or cell field data<br>(ScalarModeToUseCellFieldData). If scalars are coming from a field<br>data array, you must call SelectColorArray before you call<br>GetColors.</p>
+<p>When ScalarMode is set to use Field Data (ScalarModeToFieldData),<br>you must call SelectColorArray to choose the field data array to<br>be used to color cells. In this mode, the default behavior is to<br>treat the field data tuples as being associated with cells. If<br>the poly data contains triangle strips, the array is expected to<br>contain the cell data for each mini-cell formed by any triangle<br>strips in the poly data as opposed to treating them as a single<br>tuple that applies to the entire strip. This mode can also be<br>used to color the entire poly data by a single color obtained by<br>mapping the tuple at a given index in the field data array<br>through the color map. Use SetFieldDataTupleId() to specify<br>the tuple index.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">instance.setScalarModeToDefault();</span><br><span class="line">instance.setScalarModeToUsePointData();</span><br><span class="line">instance.setScalarModeToUseCellData();</span><br><span class="line">instance.setScalarModeToUsePointFieldData();</span><br><span class="line">instance.setScalarModeToUseCellFieldData();</span><br><span class="line">instance.setScalarModeToUseFieldData();</span><br></pre></td></tr></table></figure>
+<h3 id="getScalarModeAsString"><a href="#getScalarModeAsString" class="headerlink" title="getScalarModeAsString()"></a>getScalarModeAsString()</h3><p>Return the method for obtaining scalar data.</p>
+<h3 id="selectColorArray-arrayName-component-1"><a href="#selectColorArray-arrayName-component-1" class="headerlink" title="selectColorArray(arrayName, component = -1)"></a>selectColorArray(arrayName, component = -1)</h3><p>When ScalarMode is set to UsePointFieldData or UseCellFieldData,<br>you can specify which array to use for coloring using these methods.<br>The lookup table will decide how to convert vectors to colors.</p>
+<h3 id="fieldDataTupleId"><a href="#fieldDataTupleId" class="headerlink" title="fieldDataTupleId"></a>fieldDataTupleId</h3><p>When ScalarMode is set to UseFieldData, set the index of the<br>tuple by which to color the entire data set. By default, the<br>index is -1, which means to treat the field data array selected<br>with SelectColorArray as having a scalar value for each cell.<br>Indices of 0 or higher mean to use the tuple at the given index<br>for coloring the entire data set.</p>
+<h3 id="colorByArrayName"><a href="#colorByArrayName" class="headerlink" title="colorByArrayName"></a>colorByArrayName</h3><p>Set/Get the array name to color by.</p>
+<h3 id="resolveCoincidentTopology-STATIC"><a href="#resolveCoincidentTopology-STATIC" class="headerlink" title="resolveCoincidentTopology (STATIC)"></a>resolveCoincidentTopology (STATIC)</h3><p>Set/Get a global flag that controls whether coincident topology (e.g., a<br>line on top of a polygon) is shifted to avoid Z-buffer resolution (and<br>hence rendering problems). If not off, there are two methods to choose<br>from. PolygonOffset uses graphics systems calls to shift polygons, but<br>does not distinguish vertices and lines from one another. ShiftZBuffer<br>remaps the Z-buffer to distinguish vertices, lines, and polygons, but<br>does not always produce acceptable results. If you use the ShiftZBuffer<br>approach, you may also want to set the ResolveCoincidentTopologyZShift<br>value. (Note: not all mappers/graphics systems implement this<br>functionality.)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Mapper.setResolveCoincidentTopology(val);</span><br><span class="line">Mapper.setResolveCoincidentTopologyToDefault();</span><br><span class="line">Mapper.setResolveCoincidentTopologyToOff()</span><br><span class="line">Mapper.setResolveCoincidentTopologyToPolygonOffset()</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(Mapper.getResolveCoincidentTopology());</span><br><span class="line"><span class="built_in">console</span>.log(Mapper.getResolveCoincidentTopologyAsString());</span><br></pre></td></tr></table></figure>
+<h3 id="resolveCoincidentTopologyPolygonOffsetParameters-STATIC"><a href="#resolveCoincidentTopologyPolygonOffsetParameters-STATIC" class="headerlink" title="resolveCoincidentTopologyPolygonOffsetParameters (STATIC)"></a>resolveCoincidentTopologyPolygonOffsetParameters (STATIC)</h3><p>Used to set the polygon offset scale factor and units.<br>Used when ResolveCoincidentTopology is set to PolygonOffset.<br>These are global variables.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mapper.setResolveCoincidentTopologyPolygonOffsetParameters(factor, units);</span><br><span class="line"><span class="built_in">console</span>.log(Mapper.getResolveCoincidentTopologyPolygonOffsetParameters());</span><br></pre></td></tr></table></figure>
+<h3 id="relativeCoincidentTopologyPolygonOffsetParameters"><a href="#relativeCoincidentTopologyPolygonOffsetParameters" class="headerlink" title="relativeCoincidentTopologyPolygonOffsetParameters"></a>relativeCoincidentTopologyPolygonOffsetParameters</h3><p>Used to set the polygon offset values relative to the global<br>Used when ResolveCoincidentTopology is set to PolygonOffset.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">instance.setRelativeCoincidentTopologyPolygonOffsetParameters(factor, unit)</span><br><span class="line">instance.getRelativeCoincidentTopologyPolygonOffsetParameters() =&gt; &#123; factor, unit &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="resolveCoincidentTopologyLineOffsetParameters-STATIC"><a href="#resolveCoincidentTopologyLineOffsetParameters-STATIC" class="headerlink" title="resolveCoincidentTopologyLineOffsetParameters (STATIC)"></a>resolveCoincidentTopologyLineOffsetParameters (STATIC)</h3><p>Used to set the line offset scale factor and units.<br>Used when ResolveCoincidentTopology is set to PolygonOffset.<br>These are global variables.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mapper.setResolveCoincidentTopologyLineOffsetParameters(factor, unit)</span><br><span class="line">Mapper.getResolveCoincidentTopologyLineOffsetParameters() =&gt; &#123; factor, unit &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="relativeCoincidentTopologyLineOffsetParameters"><a href="#relativeCoincidentTopologyLineOffsetParameters" class="headerlink" title="relativeCoincidentTopologyLineOffsetParameters"></a>relativeCoincidentTopologyLineOffsetParameters</h3><p>Used to set the line offset values relative to the global<br>Used when ResolveCoincidentTopology is set to PolygonOffset.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">instance.setRelativeCoincidentTopologyLineOffsetParameters(factor, unit)</span><br><span class="line">instance.getRelativeCoincidentTopologyLineOffsetParameters() =&gt; &#123; factor, unit</span><br></pre></td></tr></table></figure>
+<h3 id="resolveCoincidentTopologyPointOffsetParameter-STATIC"><a href="#resolveCoincidentTopologyPointOffsetParameter-STATIC" class="headerlink" title="resolveCoincidentTopologyPointOffsetParameter (STATIC)"></a>resolveCoincidentTopologyPointOffsetParameter (STATIC)</h3><p>Used to set the point offset value<br>Used when ResolveCoincidentTopology is set to PolygonOffset.<br>These are global variables.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Mapper.setResolveCoincidentTopologyPointOffsetParameter(factor, unit)</span><br><span class="line">Mapper.getResolveCoincidentTopologyPointOffsetParameter() =&gt; &#123; factor, unit &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="relativeCoincidentTopologyPointOffsetParameter"><a href="#relativeCoincidentTopologyPointOffsetParameter" class="headerlink" title="relativeCoincidentTopologyPointOffsetParameter"></a>relativeCoincidentTopologyPointOffsetParameter</h3><p>Used to set the point offset value relative to the global<br>Used when ResolveCoincidentTopology is set to PolygonOffset.<br>(factor is ignored but kept for concistency)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">instance.setRelativeCoincidentTopologyPointOffsetParameters(factor, unit)</span><br><span class="line">instance.getRelativeCoincidentTopologyPointOffsetParameters() =&gt; &#123; factor, unit &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="getCoincidentTopologyPolygonOffsetParameters-gt-factor-units"><a href="#getCoincidentTopologyPolygonOffsetParameters-gt-factor-units" class="headerlink" title="getCoincidentTopologyPolygonOffsetParameters() =&gt; { factor, units }"></a>getCoincidentTopologyPolygonOffsetParameters() =&gt; { factor, units }</h3><p>Get the net paramters for handlig coincident topology obtained by summing<br>the global values with the relative values.</p>
+<h3 id="getCoincidentTopologyLineOffsetParameters-gt-factor-units"><a href="#getCoincidentTopologyLineOffsetParameters-gt-factor-units" class="headerlink" title="getCoincidentTopologyLineOffsetParameters() =&gt; { factor, units }"></a>getCoincidentTopologyLineOffsetParameters() =&gt; { factor, units }</h3><p>Get the net paramters for handlig coincident topology obtained by summing<br>the global values with the relative values.</p>
+<h3 id="getCoincidentTopologyPointOffsetParameter-gt-factor-units"><a href="#getCoincidentTopologyPointOffsetParameter-gt-factor-units" class="headerlink" title="getCoincidentTopologyPointOffsetParameter() =&gt; { factor, units }"></a>getCoincidentTopologyPointOffsetParameter() =&gt; { factor, units }</h3><p>Get the net paramters for handlig coincident topology obtained by summing<br>the global values with the relative values.</p>
+<h3 id="resolveCoincidentTopologyPolygonOffsetFaces"><a href="#resolveCoincidentTopologyPolygonOffsetFaces" class="headerlink" title="resolveCoincidentTopologyPolygonOffsetFaces"></a>resolveCoincidentTopologyPolygonOffsetFaces</h3><p>Used when ResolveCoincidentTopology is set to PolygonOffset. The polygon<br>offset can be applied either to the solid polygonal faces or the<br>lines/vertices. When set (default), the offset is applied to the faces<br>otherwise it is applied to lines and vertices.<br>This is a global variable.</p>
+<h3 id="getBounds-Array-6"><a href="#getBounds-Array-6" class="headerlink" title="getBounds() : Array(6)"></a>getBounds() : Array(6)</h3><p>Return bounding box (array of six doubles) of data expressed as<br>(xmin,xmax, ymin,ymax, zmin,zmax).</p>
+<h3 id="renderTime-set-get"><a href="#renderTime-set-get" class="headerlink" title="renderTime (set/get)"></a>renderTime (set/get)</h3><p>This instance variable is used by vtkLODActor to determine which<br>mapper to use. It is an estimate of the time necessary to render.<br>Setting the render time does not modify the mapper.</p>
+<h3 id="mapScalars-input-alpha-gt-rgba-cellFlag"><a href="#mapScalars-input-alpha-gt-rgba-cellFlag" class="headerlink" title="mapScalars(input, alpha) =&gt; { rgba, cellFlag }"></a>mapScalars(input, alpha) =&gt; { rgba, cellFlag }</h3><p>Map the scalars (if there are any scalars and ScalarVisibility is on)<br>through the lookup table, returning an unsigned char RGBA array. This is<br>typically done as part of the rendering process. The alpha parameter<br>allows the blending of the scalars with an additional alpha (typically<br>which comes from a vtkActor, etc.)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  rgba: <span class="built_in">Uint8Array</span>(),</span><br><span class="line">  location: <span class="number">0</span>/<span class="number">1</span>/<span class="number">2</span>, <span class="comment">// Points/Cells/Fields</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="getIsOpaque-Boolean"><a href="#getIsOpaque-Boolean" class="headerlink" title="getIsOpaque() : Boolean"></a>getIsOpaque() : Boolean</h3><p>Returns if the mapper does not expect to have translucent geometry. This<br>may happen when using ColorMode is set to not map scalars i.e. render the<br>scalar array directly as colors and the scalar array has opacity i.e. alpha<br>component. Default implementation simply returns true. Note that even if<br>this method returns true, an actor may treat the geometry as translucent<br>since a constant translucency is set on the property, for example.</p>
+<h3 id="canUseTextureMapForColoring-input"><a href="#canUseTextureMapForColoring-input" class="headerlink" title="canUseTextureMapForColoring(input)"></a>canUseTextureMapForColoring(input)</h3><p>Returns if we can use texture maps for scalar coloring. Note this doesn’t<br>say we “will” use scalar coloring. It says, if we do use scalar coloring,<br>we will use a texture.<br>When rendering multiblock datasets, if any 2 blocks provide different<br>lookup tables for the scalars, then also we cannot use textures. This case<br>can be handled if required.</p>
+<h3 id="clearColorArrays"><a href="#clearColorArrays" class="headerlink" title="clearColorArrays()"></a>clearColorArrays()</h3><p>Call to force a rebuild of color result arrays on next MapScalars.<br>Necessary when using arrays in the case of multiblock data.</p>
+<h3 id="getColorMapColors-Uint8Array"><a href="#getColorMapColors-Uint8Array" class="headerlink" title="getColorMapColors() : Uint8Array()"></a>getColorMapColors() : Uint8Array()</h3><p>Provide read access to the color array.</p>
+<h3 id="getColorCoordinates-Float32Array"><a href="#getColorCoordinates-Float32Array" class="headerlink" title="getColorCoordinates() : Float32Array()"></a>getColorCoordinates() : Float32Array()</h3><p>Provide read access to the color texture coordinate array</p>
+<h3 id="getColorTextureMap-ImageData"><a href="#getColorTextureMap-ImageData" class="headerlink" title="getColorTextureMap() : ?? ImageData ??"></a>getColorTextureMap() : ?? ImageData ??</h3><p>Provide read access to the color texture array</p>
+<h3 id="viewSpecificProperties"><a href="#viewSpecificProperties" class="headerlink" title="viewSpecificProperties"></a>viewSpecificProperties</h3><p>If you want to provide specific properties for rendering engines you can use<br>viewSpecificProperties.</p>
+<p>You can go and have a look in the rendering backend of your choice for details<br>on specific properties.<br>For example, for OpenGL/WebGL see OpenGL/PolyDataMapper/api.md<br>If there is no details, viewSpecificProperties is not supported.</p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://yoursite.com/2018/09/10/vtkMapper-Introduction/" data-id="cjlxvq6dl0002lgqnzcwkpma1" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>关注我 :</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/09/10/vtkActor-Introduction/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            vtkActor Introduction
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">最新文章</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/11/hello-world/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/09/11/hello-world/" class="title">Hello World</a></p>
+                            <p class="item-date"><time datetime="2018-09-11T15:30:33.487Z" itemprop="datePublished">2018-09-11</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/10/vtkActor-Introduction/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/09/10/vtkActor-Introduction/" class="title">vtkActor Introduction</a></p>
+                            <p class="item-date"><time datetime="2018-09-10T15:09:30.000Z" itemprop="datePublished">2018-09-10</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/09/10/vtkMapper-Introduction/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/VTK/">VTK</a></p>
+                            <p class="item-title"><a href="/2018/09/10/vtkMapper-Introduction/" class="title">vtkMapper Introduction</a></p>
+                            <p class="item-date"><time datetime="2018-09-10T15:09:30.000Z" itemprop="datePublished">2018-09-10</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/VTK/">VTK</a><span class="category-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">九月 2018</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">标签</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vtk/">vtk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vtk-js/">vtk-js</a><span class="tag-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/vtk/" style="font-size: 10px;">vtk</a> <a href="/tags/vtk-js/" style="font-size: 20px;">vtk-js</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">链接</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 xmliu0915</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://yoursite.com/2018/09/10/vtkMapper-Introduction/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -6,21 +6,24 @@
     
 
     
-    <title>六院七院</title>
+    <title>vtkActor Introduction | 六院七院</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <meta name="description" content="xmliu0915的个人网站，欢迎留言！">
-<meta name="keywords" content="python, vtk, paraview, git">
-<meta property="og:type" content="website">
-<meta property="og:title" content="六院七院">
-<meta property="og:url" content="http://yoursite.com/index.html">
+        <meta name="keywords" content="vtk-js" />
+    
+    <meta name="description" content="vtkActor is used to represent an entity in a rendering scene. It inheritsfunctions related to the actors position, and orientation fromvtkProp3D. The actor also has scaling and maintains a reference t">
+<meta name="keywords" content="vtk-js">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vtkActor Introduction">
+<meta property="og:url" content="http://yoursite.com/2018/09/10/vtkActor-Introduction/index.html">
 <meta property="og:site_name" content="六院七院">
-<meta property="og:description" content="xmliu0915的个人网站，欢迎留言！">
+<meta property="og:description" content="vtkActor is used to represent an entity in a rendering scene. It inheritsfunctions related to the actors position, and orientation fromvtkProp3D. The actor also has scaling and maintains a reference t">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-09-11T14:36:28.435Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="六院七院">
-<meta name="twitter:description" content="xmliu0915的个人网站，欢迎留言！">
+<meta name="twitter:title" content="vtkActor Introduction">
+<meta name="twitter:description" content="vtkActor is used to represent an entity in a rendering scene. It inheritsfunctions related to the actors position, and orientation fromvtkProp3D. The actor also has scaling and maintains a reference t">
     
 
     
@@ -133,170 +136,152 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <em class="page-title-link" data-url="home">主页</em>
+    未分类
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            
+                            <article id="post-vtkActor-Introduction" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        vtkActor Introduction
+        </h1>
+    
 
-    
-    
+            </header>
         
         
-        <section class="archives-wrap">
-            <div class="archive-year-wrap">
-                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2018/09/10/vtkActor-Introduction/" class="article-date">
+            <time datetime="2018-09-10T15:09:30.000Z" itemprop="datePublished">2018-09-10</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/vtk-js/">vtk-js</a>
+    </div>
+
             </div>
-            <div class="archives">
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
         
-        <a href="/2018/09/11/hello-world/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/09/11/hello-world/">0</span>
-    
-</span>
+        <div class="article-entry" itemprop="articleBody">
+            <p>vtkActor is used to represent an entity in a rendering scene. It inherits<br>functions related to the actors position, and orientation from<br>vtkProp3D. The actor also has scaling and maintains a reference to the<br>defining geometry (i.e., the mapper), rendering properties, and possibly a<br>texture map. vtkActor combines these instance variables into one 4x4<br>transformation matrix as follows: [x y z 1] = [x y z 1] Translate(-origin)<br>Scale(scale) Rot(y) Rot(x) Rot (z) Trans(origin) Trans(position)</p>
+<h2 id="See-Also"><a href="#See-Also" class="headerlink" title="See Also"></a>See Also</h2><p><a href="./Rendering_Core_Mapper.html">vtkMapper</a><br><a href="./Rendering_Core_Property.html">vtkProperty</a> </p>
+<h2 id="newInstance"><a href="#newInstance" class="headerlink" title="newInstance()"></a>newInstance()</h2><p>Create an actor with the following defaults:</p>
+<ul>
+<li>origin = (0,0,0)</li>
+<li>position = (0,0,0)</li>
+<li>scale = (1,1,1)</li>
+<li>visibility = 1</li>
+<li>pickable = 1</li>
+<li>dragable = 1</li>
+<li>orientation = (0,0,0).<br>No user defined matrix and no texture map.</li>
+</ul>
+<h2 id="getActors-TBD"><a href="#getActors-TBD" class="headerlink" title="getActors() TBD"></a>getActors() TBD</h2><p>For some exporters and other other operations we must be<br>able to collect all the actors or volumes. These methods<br>are used in that process.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">virtual void GetActors(vtkPropCollection *);</span><br></pre></td></tr></table></figure>
+<h2 id="hasTranslucentPolygonalGeometry"><a href="#hasTranslucentPolygonalGeometry" class="headerlink" title="hasTranslucentPolygonalGeometry()"></a>hasTranslucentPolygonalGeometry()</h2><p>Does this prop have some translucent polygonal geometry?</p>
+<h2 id="property"><a href="#property" class="headerlink" title="property"></a>property</h2><p>Set/Get the property object that controls this actors surface<br>properties. This should be an instance of a vtkProperty object. Every<br>actor must have a property associated with it. If one isn’t specified,<br>then one will be generated automatically. Multiple actors can share one<br>property object.</p>
+<h2 id="makeProperty"><a href="#makeProperty" class="headerlink" title="makeProperty()"></a>makeProperty()</h2><p>Create a new property suitable for use with this type of Actor.<br>For example, a vtkMesaActor should create a vtkMesaProperty<br>in this function. The default is to create a vtkProperty.</p>
+<h2 id="backfaceProperty"><a href="#backfaceProperty" class="headerlink" title="backfaceProperty"></a>backfaceProperty</h2><p>Set/Get the property object that controls this actors backface surface<br>properties. This should be an instance of a vtkProperty object. If one<br>isn’t specified, then the front face properties will be used. Multiple<br>actors can share one property object.</p>
+<h2 id="texture-TBD"><a href="#texture-TBD" class="headerlink" title="texture TBD"></a>texture TBD</h2><p>Set/Get the texture object to control rendering texture maps. This will<br>be a vtkTexture object. An actor does not need to have an associated<br>texture map and multiple actors can share one texture.</p>
+<h2 id="mapper"><a href="#mapper" class="headerlink" title="mapper"></a>mapper</h2><p>This is the method that is used to connect an actor to the end of a<br>visualization pipeline, i.e. the mapper. This should be a subclass<br>of vtkMapper. Typically vtkPolyDataMapper and vtkDataSetMapper will<br>be used.</p>
+<h2 id="bounds"><a href="#bounds" class="headerlink" title="bounds()"></a>bounds()</h2><p>Get the bounds for this Actor as (Xmin,Xmax,Ymin,Ymax,Zmin,Zmax).</p>
+<h2 id="applyProperties"><a href="#applyProperties" class="headerlink" title="applyProperties()"></a>applyProperties()</h2><p>Apply the current properties to all parts that compose this actor.<br>This method is overloaded in vtkAssembly to apply the assemblies’<br>properties to all its parts in a recursive manner. Typically the<br>use of this method is to set the desired properties in the assembly,<br>and then push the properties down to the assemblies parts with<br>applyProperties().</p>
+<h2 id="getMTime"><a href="#getMTime" class="headerlink" title="getMTime()"></a>getMTime()</h2><p>Get the newest “modification time” of the actor, its properties, and texture (if set).</p>
+<h2 id="getRedrawMTime"><a href="#getRedrawMTime" class="headerlink" title="getRedrawMTime()"></a>getRedrawMTime()</h2><p>Return the mtime of anything that would cause the rendered image to<br>appear differently. Usually this involves checking the mtime of the<br>prop plus anything else it depends on such as properties, textures,<br>etc.</p>
+<h2 id="forceOpaque-and-forceTranslucent"><a href="#forceOpaque-and-forceTranslucent" class="headerlink" title="forceOpaque and forceTranslucent"></a>forceOpaque and forceTranslucent</h2><p>Force the actor to be treated as opaque or translucent</p>
+<p>  // is this actor opaque<br>  int GetIsOpaque();<br>  bool ForceOpaque;<br>  bool ForceTranslucent;</p>
+<p>  // Bounds are cached in an actor - the MapperBounds are also cache to<br>  // help know when the Bounds need to be recomputed.<br>  double MapperBounds[6];<br>  vtkTimeStamp BoundsMTime;</p>
 
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
+        </div>
+        <footer class="article-footer">
             
-            </div>
-            <div class="date"><time datetime="2018-09-11T15:30:33.487Z" itemprop="datePublished">2018-09-11</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/09/11/hello-world/">Hello World</a>
-        </h1>
-    
 
-        <p class="article-excerpt">
-            Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.HaHa
-Q
-        </p>
+
+
+    <a data-url="http://yoursite.com/2018/09/10/vtkActor-Introduction/" data-id="cjlxvq6db0001lgqnnlqrpj3x" class="article-share-link"><i class="fa fa-share"></i>分享到</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
     </div>
 </article>
-    
 
-    
-    
-    
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/09/10/vtkActor-Introduction/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
+    <section id="comments">
     
         
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/09/10/vtkActor-Introduction/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            
-            </div>
-            <div class="date"><time datetime="2018-09-10T15:09:30.000Z" itemprop="datePublished">2018-09-10</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/09/10/vtkActor-Introduction/">vtkActor Introduction</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            vtkActor is used to represent an entity in a rendering scene. It inheritsfunctions related to the actors position, and orientation fromvtkProp3D. The actor also has scaling and maintains a reference t
-        </p>
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
     </div>
-</article>
-    
-        </div>
-    
 
     
-    
-    
-    
-        <div class="article-row">
-    
-        <article class="article article-summary">
-    <div class="article-summary-inner">
-        
-        <a href="/2018/09/10/vtkMapper-Introduction/" class="thumbnail">
-    
-    
-        <span class="thumbnail-image thumbnail-none"></span>
-    
-    
-        
-<span class="comment-counter">
-    <i class="fa fa-comments-o"></i>
-    
-        <span class="disqus-comment-count" data-disqus-identifier="" data-disqus-url="http://yoursite.com/2018/09/10/vtkMapper-Introduction/">0</span>
-    
-</span>
-
-
-    
-</a>
-
-        
-        <div class="article-meta">
-            <div class="category">
-            <a class="article-category-link" href="/categories/VTK/">VTK</a>
-            </div>
-            <div class="date"><time datetime="2018-09-10T15:09:30.000Z" itemprop="datePublished">2018-09-10</time></div>
-        </div>
-        
-    
-        <h1 class="article-title" itemprop="name">
-        <a href="/2018/09/10/vtkMapper-Introduction/">vtkMapper Introduction</a>
-        </h1>
-    
-
-        <p class="article-excerpt">
-            IntroductionvtkMapper is an abstract class to specify interface between data andgraphics primitives. Subclasses of vtkMapper map data through alookuptable and control the creation of rendering primiti
-        </p>
-    </div>
-</article>
-    
-        </div>
-    
-
-
-    </div></section>
+    </section>
 
 
 
@@ -358,6 +343,29 @@ Q
             
         </ul>
     </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2018/09/11/hello-world/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">下一篇</strong>
+        <p class="article-nav-title">
+        
+            Hello World
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2018/09/10/vtkMapper-Introduction/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">上一篇</strong>
+        <p class="article-nav-title">vtkMapper Introduction</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
     
     <div class="widgets-container">
         
@@ -526,11 +534,13 @@ Q
     var disqus_shortname = 'hexo-theme-hueman';
     
     
+    var disqus_url = 'http://yoursite.com/2018/09/10/vtkActor-Introduction/';
+    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
